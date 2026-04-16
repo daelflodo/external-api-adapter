@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
+import { MarketQuote } from '../modules/market/entities/MarketQuote.entity';
 import { env } from './env';
 
-// Entities will be added in the next commit
 export const AppDataSource = new DataSource({
   type: 'postgres',
   host: env.db.host,
@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource({
   username: env.db.username,
   password: env.db.password,
   database: env.db.database,
-  entities: [],
+  entities: [MarketQuote],
   synchronize: true,
   logging: false,
 });
