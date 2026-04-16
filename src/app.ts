@@ -1,5 +1,8 @@
+import 'reflect-metadata';
 import express from 'express';
 import morgan from 'morgan';
+import { MarketModule } from './modules/market/market.module';
+import { errorMiddleware } from './shared/middleware/error.middleware';
 
 export function createApp(): express.Application {
   const app = express();
@@ -11,7 +14,10 @@ export function createApp(): express.Application {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
-  // Modules will be registered in the next commit
+  const marketModule = new MarketModule();
+  app.use('/external-data', marketModule.router);
+
+  app.use(errorMiddleware);
 
   return app;
 }
