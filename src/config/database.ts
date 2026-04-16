@@ -12,4 +12,5 @@ export const AppDataSource = new DataSource({
   entities: [MarketQuote],
   synchronize: true,
   logging: false,
+  ssl: { rejectUnauthorized: false },
 });
